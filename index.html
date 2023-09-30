@@ -74,37 +74,48 @@
             url = url.replace(/(\?|&)price=([^&]*)/, function (match, separator, oldValue) {
                 return separator + "reg_type_id=" + priceValue;
             });
-            
+
             let newUrl = window.history.replaceState({}, document.title, url);
             // URL original
-           // Atualize a URL do navegador para a nova URL
-           console.log(newUrl);
+            // Atualize a URL do navegador para a nova URL
+            console.log(newUrl);
 
             // Novo domínio
             var newDomain = "https://www.together-we-care.com/home/register?";
 
             // Divida a URL original em domínio e parâmetros
-            var parts = url.split("?");
-            if (parts.length === 2) {
-                var domain = parts[0];
-                var queryParams = parts[1];
+            // var parts = url.split("?");
+            // if (parts.length === 2) {
+            //     var domain = parts[0];
+            //     var queryParams = parts[1];
 
-                // Reconstrua a URL com o novo domínio
-                var updatedUrl = newDomain + "?" + queryParams;
+            //     // Reconstrua a URL com o novo domínio
+            //     var updatedUrl = newDomain + "?" + queryParams;
 
-                console.log("Nova URL:", updatedUrl);
-            } else {
-                console.log("A URL original não está no formato esperado.");
-            }
+            //     console.log("Nova URL:", updatedUrl);
+            // } else {
+            //     console.log("A URL original não está no formato esperado.");
+            // }
+            // URL original
+            var originalURL =
+                "https://proxy-together.vercel.app/?package_id=51826&c_3231890=203&reg_type_id=454496";
+
+            // Novo domínio
+            var newDomain = "https://www.together-we-care.com/home/register?";
+
+            // Substituir o domínio
+            var newURL = originalURL.replace(/^(https:\/\/)[^?]+/, newDomain);
+
+            console.log("Nova URL:", newURL);
 
             // Use a nova URL como desejar
             console.log("Nova URL:", url);
 
-            
+
 
             setTimeout(() => {
                 window.location.href = updatedUrl;
-            },500)
+            }, 500)
 
 
 
