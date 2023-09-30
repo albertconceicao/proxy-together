@@ -1,61 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Integration</title>
 </head>
+
 <body>
 
-    <h1>Integration</h1>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <img src="./spinner.gif" alt="Loading page" style="display: flex;justify-content: center;align-items: center;margin: 0 auto;">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function () {
             // Colocar um console.log pra quando acessarem o site por meio da url, retornar os parâmetros (para verificar se o código de substituir o booth e price estão funcionando bem e pra ver se injetar a nova URL no vnavegador vai dar bom também)
             // Obtém a URL atual
-            var url = window.location.href;
-    
+            var url = document.referrer;
+
             // Divide a URL em partes com base no caractere "?"
             var parts = url.split("?");
-    
+
             // Inicializa variáveis para armazenar os valores de booth e price
             var boothValue = "";
             var priceValue = "";
-    
+            // var newPriceValue = "";
             // Verifica se existem parâmetros na URL
             if (parts.length > 1) {
                 // Obtém a parte dos parâmetros
                 var params = parts[1];
-    
+
                 // Divide os parâmetros em pares chave/valor
                 var paramPairs = params.split("&");
-    
+
                 // Itera sobre os pares chave/valor
                 for (var i = 0; i < paramPairs.length; i++) {
                     var pair = paramPairs[i].split("=");
                     var key = decodeURIComponent(pair[0]);
                     var value = decodeURIComponent(pair[1]);
-    
-                    // Verifica a chave e atribui o valor correspondente às variáveis
+
+
                     if (key === "booth") {
                         boothValue = value;
                     } else if (key === "price") {
                         priceValue = value;
                     }
                 }
+
+                if (value == '3000') {
+                    priceValue = '454496'
+                } else if (value === '3200') {
+                    priceValue = '454497'
+                } else if (value == '5600') {
+                    priceValue = '459570';
+
+                } else if (value == '7700') {
+                    priceValue = '459573';
+
+                } else if (value == '9300') {
+                    priceValue = '459571';
+
+                } else if (value == '3400') {
+                    priceValue = '459569';
+                }
             }
-    
+
             // Substitui as chaves "c_99999" e "c_88888" pelos valores de booth e price na URL
             url = url.replace(/booth=/, "c_3231890=");
-            url = url.replace(/price=/, "reg_type_id=" );
-    
+            url = url.replace(/(\?|&)price=([^&]*)/, function (match, separator, oldValue) {
+                return separator + "reg_type_id=" + priceValue;
+            });
+
+
             // Use a nova URL como desejar
             console.log("Nova URL:", url);
-    
+
             // Atualize a URL do navegador para a nova URL
-            window.history.replaceState({}, document.title, url);
-    
-    
+            let newUrl = window.history.replaceState({}, document.title, url);
+            console.log(newUrl);
+
+            setTimeout(() => {
+                window.location.href = newUrl;
+            },500)
+
+
+
             // $('#registrant-c_3231890').val(booth);
             // $('#registrant-c_3231890').attr('placeholder', booth);
             // if (price == '3.000') {
@@ -114,15 +143,16 @@
             //     })
             // }
             // console.log(info);
-    
-    
-    
-    
+
+
+
+
             // $('#registrant-c_3231890').prop('readonly', true)
             // $('#registrant-reg_type_id input').prop('disabled', true)
-    
+
         });
     </script>
-    
+
 </body>
+
 </html>
