@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integration</title>
+</head>
+<body>
+
+    <h1>Integration</h1>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            // Colocar um console.log pra quando acessarem o site por meio da url, retornar os parâmetros (para verificar se o código de substituir o booth e price estão funcionando bem e pra ver se injetar a nova URL no vnavegador vai dar bom também)
+            // Obtém a URL atual
+            var url = window.location.href;
+    
+            // Divide a URL em partes com base no caractere "?"
+            var parts = url.split("?");
+    
+            // Inicializa variáveis para armazenar os valores de booth e price
+            var boothValue = "";
+            var priceValue = "";
+    
+            // Verifica se existem parâmetros na URL
+            if (parts.length > 1) {
+                // Obtém a parte dos parâmetros
+                var params = parts[1];
+    
+                // Divide os parâmetros em pares chave/valor
+                var paramPairs = params.split("&");
+    
+                // Itera sobre os pares chave/valor
+                for (var i = 0; i < paramPairs.length; i++) {
+                    var pair = paramPairs[i].split("=");
+                    var key = decodeURIComponent(pair[0]);
+                    var value = decodeURIComponent(pair[1]);
+    
+                    // Verifica a chave e atribui o valor correspondente às variáveis
+                    if (key === "booth") {
+                        boothValue = value;
+                    } else if (key === "price") {
+                        priceValue = value;
+                    }
+                }
+            }
+    
+            // Substitui as chaves "c_99999" e "c_88888" pelos valores de booth e price na URL
+            url = url.replace(/booth=/, "c_3231890=");
+            url = url.replace(/price=/, "reg_type_id=" );
+    
+            // Use a nova URL como desejar
+            console.log("Nova URL:", url);
+    
+            // Atualize a URL do navegador para a nova URL
+            window.history.replaceState({}, document.title, url);
+    
+    
+            // $('#registrant-c_3231890').val(booth);
+            // $('#registrant-c_3231890').attr('placeholder', booth);
+            // if (price == '3.000') {
+            //     console.log('3.000')
+            //     $('#registrant-reg_type_id input').each(function () {
+            //         if ($(this).val() == '454496') {
+            //             console.log('Input 1')
+            //             $(this).prop('checked', true)
+            //             $(this).prop('disabled', false);
+            //         }
+            //     })
+            // } else if (price == '3.200') {
+            //     console.log('3.200')
+            //     $('#registrant-reg_type_id input').each(function () {
+            //         if ($(this).val() == '454497') {
+            //             console.log('Input 2')
+            //             $(this).prop('checked', true)
+            //             $(this).prop('disabled', false);
+            //         }
+            //     })
+            // } else if (price == '3.400') {
+            //     console.log('3.400')
+            //     $('#registrant-reg_type_id input').each(function () {
+            //         if ($(this).val() == '459569') {
+            //             console.log('Input 3')
+            //             $(this).prop('checked', true)
+            //             $(this).prop('disabled', false);
+            //         }
+            //     })
+            // } else if (price == '5.600') {
+            //     console.log('5.600')
+            //     $('#registrant-reg_type_id input').each(function () {
+            //         if ($(this).val() == '459570') {
+            //             console.log('Input 4')
+            //             $(this).prop('checked', true)
+            //             $(this).prop('disabled', false);
+            //         }
+            //     })
+            // } else if (price == '7.700') {
+            //     console.log('7.700')
+            //     $('#registrant-reg_type_id input').each(function () {
+            //         if ($(this).val() == '459573') {
+            //             console.log('Input 5')
+            //             $(this).prop('checked', true)
+            //             $(this).prop('disabled', false);
+            //         }
+            //     })
+            // } else if (price == '9.300') {
+            //     console.log('9.300')
+            //     $('#registrant-reg_type_id input').each(function () {
+            //         if ($(this).val() == '459571') {
+            //             console.log('Input 6')
+            //             $(this).prop('checked', true)
+            //             $(this).prop('disabled', false);
+            //         }
+            //     })
+            // }
+            // console.log(info);
+    
+    
+    
+    
+            // $('#registrant-c_3231890').prop('readonly', true)
+            // $('#registrant-reg_type_id input').prop('disabled', true)
+    
+        });
+    </script>
+    
+</body>
+</html>
