@@ -97,19 +97,18 @@
             //     console.log("A URL original não está no formato esperado.");
             // }
             // URL original
-            var originalURL =
-                "https://proxy-together.vercel.app/?package_id=51826&c_3231890=203&reg_type_id=454496";
+            var urlToChange = url;
 
             // Novo domínio
             var newDomain = "https://www.together-we-care.com/home/register?";
 
             // Substituir o domínio
-            var newURL = originalURL.replace(/^(https:\/\/)[^?]+/, newDomain);
+            var updatedUrl = urlToChange.replace(/^(https:\/\/)[^?]+/, newDomain);
 
-            console.log("Nova URL:", newURL);
+            console.log("Nova URL:", updatedUrl);
 
             // Use a nova URL como desejar
-            console.log("Nova URL:", url);
+            console.log("Nova URL:", updatedUrl);
 
 
 
