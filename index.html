@@ -99,21 +99,18 @@
             var urlToChange = url;
 
             // Novo domínio
-            var newDomain = "https://www.together-we-care.com/home/register?";
+            var newDomain = "https://www.together-we-care.com/home/register";
 
             // Substituir o domínio
-            var updatedUrl = urlToChange.replace(/^(https:\/\/)[^/]+/, newDomain);
+            var updatedUrl = urlToChange.replace(/^(https:\/\/)[^/?]+/, newDomain);
 
             console.log("Nova URL:", updatedUrl);
 
-            // Use a nova URL como desejar
-            console.log("Nova URL:", updatedUrl);
 
 
-
-            setTimeout(() => {
-                window.location.href = updatedUrl;
-            }, 500)
+            // setTimeout(() => {
+            //     window.location.href = updatedUrl;
+            // }, 500)
 
 
 
