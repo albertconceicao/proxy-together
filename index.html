@@ -16,7 +16,7 @@
         $(document).ready(function () {
             // Colocar um console.log pra quando acessarem o site por meio da url, retornar os parâmetros (para verificar se o código de substituir o booth e price estão funcionando bem e pra ver se injetar a nova URL no vnavegador vai dar bom também)
             // Obtém a URL atual
-            var url = document.referrer;
+            var url = window.location.href;
             console.log({url});
 
             // Divide a URL em partes com base no caractere "?"
