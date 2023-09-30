@@ -9,7 +9,8 @@
 
 <body>
 
-    <img src="./spinner.gif" alt="Loading page" style="display: flex;justify-content: center;align-items: center;margin: 0 auto;">
+    <img src="./spinner.gif" alt="Loading page"
+        style="display: flex;justify-content: center;align-items: center;margin: 0 auto;">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
@@ -17,7 +18,9 @@
             // Colocar um console.log pra quando acessarem o site por meio da url, retornar os parâmetros (para verificar se o código de substituir o booth e price estão funcionando bem e pra ver se injetar a nova URL no vnavegador vai dar bom também)
             // Obtém a URL atual
             var url = window.location.href;
-            console.log({url});
+            console.log({
+                url
+            });
 
             // Divide a URL em partes com base no caractere "?"
             var parts = url.split("?");
@@ -71,18 +74,37 @@
             url = url.replace(/(\?|&)price=([^&]*)/, function (match, separator, oldValue) {
                 return separator + "reg_type_id=" + priceValue;
             });
+            
+            let newUrl = window.history.replaceState({}, document.title, url);
+            // URL original
+           // Atualize a URL do navegador para a nova URL
+           console.log(newUrl);
 
+            // Novo domínio
+            var newDomain = "https://www.together-we-care.com/home/register?";
+
+            // Divida a URL original em domínio e parâmetros
+            var parts = url.split("?");
+            if (parts.length === 2) {
+                var domain = parts[0];
+                var queryParams = parts[1];
+
+                // Reconstrua a URL com o novo domínio
+                var updatedUrl = newDomain + "?" + queryParams;
+
+                console.log("Nova URL:", newURL);
+            } else {
+                console.log("A URL original não está no formato esperado.");
+            }
 
             // Use a nova URL como desejar
             console.log("Nova URL:", url);
 
-            // Atualize a URL do navegador para a nova URL
-            let newUrl = window.history.replaceState({}, document.title, url);
-            console.log(newUrl);
+            
 
-            // setTimeout(() => {
-            //     window.location.href = newUrl;
-            // },500)
+            setTimeout(() => {
+                window.location.href = updatedUrl;
+            },500)
 
 
 
